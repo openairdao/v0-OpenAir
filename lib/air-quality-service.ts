@@ -18,13 +18,16 @@ export async function fetchAirQualityData(): Promise<AirQualityData> {
   // Simulate API call delay
   await new Promise((resolve) => setTimeout(resolve, 1000))
 
-  // Mock data
+  // Get current date and time
+  const now = new Date()
+
+  // Mock data with current timestamp
   return {
     currentAQI: 58,
     pm25: 18.5,
     temperature: 24.3,
     humidity: 65,
-    lastUpdated: new Date().toLocaleString(),
+    lastUpdated: now.toLocaleString(),
     historicalData: [
       { timestamp: "00:00", aqi: 35, pm25: 10 },
       { timestamp: "04:00", aqi: 42, pm25: 12 },

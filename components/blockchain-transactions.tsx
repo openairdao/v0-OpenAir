@@ -42,11 +42,14 @@ export function BlockchainTransactions({ limit = 10 }: BlockchainTransactionsPro
         // Simulate API call delay
         await new Promise((resolve) => setTimeout(resolve, 1500))
 
-        // Always show mock transactions data regardless of token balance
+        // Get current date and time
+        const now = new Date()
+
+        // Generate dynamic timestamps based on current time
         const mockTransactions: Transaction[] = [
           {
             signature: "5qpT3NWxcR4Lv2Jj8YQYGNqoFrfDKxHd7mwTJDHX5BsrUZf9qdkHZXnXP6iSz7RYZHBmx9aQNwLCvMJGkw3f2Qe",
-            timestamp: "2025-05-05T08:12:23Z",
+            timestamp: new Date(now.getTime() - 5 * 60000).toISOString(), // 5 minutes ago
             sensorId: "sensor-1",
             aqi: 42,
             pm25: 12.5,
@@ -54,7 +57,7 @@ export function BlockchainTransactions({ limit = 10 }: BlockchainTransactionsPro
           },
           {
             signature: "3xRTm2Nj6LpYvBqDzHwK9FcS4GxZeJQr7tVX8sP5RmYfUZf9qdkHZXnXP6iSz7RYZHBmx9aQNwLCvMJGkw3f2Qe",
-            timestamp: "2025-05-05T07:45:12Z",
+            timestamp: new Date(now.getTime() - 20 * 60000).toISOString(), // 20 minutes ago
             sensorId: "sensor-2",
             aqi: 65,
             pm25: 22.3,
@@ -62,7 +65,7 @@ export function BlockchainTransactions({ limit = 10 }: BlockchainTransactionsPro
           },
           {
             signature: "7aQpWxYzE4Rt2VbNmLkF8sJdG3hP9cRvX5sT6uZf9qdkHZXnXP6iSz7RYZHBmx9aQNwLCvMJGkw3f2Qe",
-            timestamp: "2025-05-05T07:30:45Z",
+            timestamp: new Date(now.getTime() - 35 * 60000).toISOString(), // 35 minutes ago
             sensorId: "sensor-3",
             aqi: 110,
             pm25: 45.8,
@@ -70,7 +73,7 @@ export function BlockchainTransactions({ limit = 10 }: BlockchainTransactionsPro
           },
           {
             signature: "2bTrKpLm5nVxCzJqWsYf7gDh8eP3aRvX5sT6uZf9qdkHZXnXP6iSz7RYZHBmx9aQNwLCvMJGkw3f2Qe",
-            timestamp: "2025-05-05T07:15:33Z",
+            timestamp: new Date(now.getTime() - 50 * 60000).toISOString(), // 50 minutes ago
             sensorId: "sensor-4",
             aqi: 35,
             pm25: 9.2,
@@ -78,7 +81,7 @@ export function BlockchainTransactions({ limit = 10 }: BlockchainTransactionsPro
           },
           {
             signature: "9cXpWzYtE4Rt2VbNmLkF8sJdG3hP9cRvX5sT6uZf9qdkHZXnXP6iSz7RYZHBmx9aQNwLCvMJGkw3f2Qe",
-            timestamp: "2025-05-05T07:00:18Z",
+            timestamp: new Date(now.getTime() - 65 * 60000).toISOString(), // 65 minutes ago
             sensorId: "sensor-5",
             aqi: 48,
             pm25: 14.7,
@@ -86,7 +89,7 @@ export function BlockchainTransactions({ limit = 10 }: BlockchainTransactionsPro
           },
           {
             signature: "4dRtMpLm5nVxCzJqWsYf7gDh8eP3aRvX5sT6uZf9qdkHZXnXP6iSz7RYZHBmx9aQNwLCvMJGkw3f2Qe",
-            timestamp: "2025-05-05T06:45:02Z",
+            timestamp: new Date(now.getTime() - 80 * 60000).toISOString(), // 80 minutes ago
             sensorId: "sensor-1",
             aqi: 44,
             pm25: 13.1,
@@ -94,7 +97,7 @@ export function BlockchainTransactions({ limit = 10 }: BlockchainTransactionsPro
           },
           {
             signature: "6eTsWzYtE4Rt2VbNmLkF8sJdG3hP9cRvX5sT6uZf9qdkHZXnXP6iSz7RYZHBmx9aQNwLCvMJGkw3f2Qe",
-            timestamp: "2025-05-05T06:30:55Z",
+            timestamp: new Date(now.getTime() - 95 * 60000).toISOString(), // 95 minutes ago
             sensorId: "sensor-2",
             aqi: 68,
             pm25: 23.5,
@@ -102,7 +105,7 @@ export function BlockchainTransactions({ limit = 10 }: BlockchainTransactionsPro
           },
           {
             signature: "8fVuNpLm5nVxCzJqWsYf7gDh8eP3aRvX5sT6uZf9qdkHZXnXP6iSz7RYZHBmx9aQNwLCvMJGkw3f2Qe",
-            timestamp: "2025-05-05T06:15:40Z",
+            timestamp: new Date(now.getTime() - 110 * 60000).toISOString(), // 110 minutes ago
             sensorId: "sensor-3",
             aqi: 105,
             pm25: 42.3,
@@ -110,7 +113,7 @@ export function BlockchainTransactions({ limit = 10 }: BlockchainTransactionsPro
           },
           {
             signature: "1gWvXzYtE4Rt2VbNmLkF8sJdG3hP9cRvX5sT6uZf9qdkHZXnXP6iSz7RYZHBmx9aQNwLCvMJGkw3f2Qe",
-            timestamp: "2025-05-05T06:00:22Z",
+            timestamp: new Date(now.getTime() - 125 * 60000).toISOString(), // 125 minutes ago
             sensorId: "sensor-4",
             aqi: 38,
             pm25: 10.5,
@@ -118,7 +121,7 @@ export function BlockchainTransactions({ limit = 10 }: BlockchainTransactionsPro
           },
           {
             signature: "5hYwPpLm5nVxCzJqWsYf7gDh8eP3aRvX5sT6uZf9qdkHZXnXP6iSz7RYZHBmx9aQNwLCvMJGkw3f2Qe",
-            timestamp: "2025-05-05T05:45:10Z",
+            timestamp: new Date(now.getTime() - 140 * 60000).toISOString(), // 140 minutes ago
             sensorId: "sensor-5",
             aqi: 50,
             pm25: 15.2,
@@ -129,11 +132,12 @@ export function BlockchainTransactions({ limit = 10 }: BlockchainTransactionsPro
         setTransactions(mockTransactions.slice(0, limit))
       } catch (error) {
         console.error("Error fetching blockchain transactions:", error)
-        // Even on error, show some mock data
+        // Even on error, show some mock data with current time
+        const now = new Date()
         setTransactions([
           {
             signature: "5qpT3NWxcR4Lv2Jj8YQYGNqoFrfDKxHd7mwTJDHX5BsrUZf9qdkHZXnXP6iSz7RYZHBmx9aQNwLCvMJGkw3f2Qe",
-            timestamp: "2025-05-05T08:12:23Z",
+            timestamp: new Date(now.getTime() - 5 * 60000).toISOString(), // 5 minutes ago
             sensorId: "sensor-1",
             aqi: 42,
             pm25: 12.5,
