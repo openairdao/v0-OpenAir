@@ -60,8 +60,8 @@
     "zod": "^3.24.1",
     "@solana/web3.js": "latest",
     "@solana/wallet-adapter-react": "latest",
-    "@solana/wallet-adapter-react-ui": "latest",
     "@solana/wallet-adapter-base": "latest",
+    "@solana/wallet-adapter-react-ui": "latest",
     "@solana/wallet-adapter-wallets": "latest"
   },
   "devDependencies": {

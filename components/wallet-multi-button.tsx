@@ -10,11 +10,15 @@ export function WalletMultiButton() {
   const { connected, wallet, connecting, disconnect } = useWallet()
   const [mounted, setMounted] = useState(false)
   const [error, setError] = useState<string | null>(null)
+  const [demoMode, setDemoMode] = useState(false)
   const router = useRouter()
 
   // Ensure component is mounted to avoid hydration errors
   useEffect(() => {
     setMounted(true)
+    // Check if we're in demo mode
+    const isDemo = localStorage.getItem("openair-demo-mode") === "true"
+    setDemoMode(isDemo)
   }, [])
 
   // Handle wallet connection errors
@@ -38,6 +42,13 @@ export function WalletMultiButton() {
     window.location.reload()
   }
 
+  // Function to exit demo mode
+  const handleExitDemoMode = () => {
+    localStorage.removeItem("openair-demo-mode")
+    // Refresh the page to apply changes
+    window.location.reload()
+  }
+
   // If we're in a preview environment or the wallet isn't available, show a mock button
   if (!mounted || error) {
     return (
@@ -57,13 +68,19 @@ export function WalletMultiButton() {
     )
   }
 
-  // In development/preview mode, provide a mock wallet experience
-  if (process.env.NODE_ENV === "development" || typeof window === "undefined" || !wallet) {
+  // In development/preview mode or if demo mode is active, provide a mock wallet experience
+  if (process.env.NODE_ENV === "development" || typeof window === "undefined" || !wallet || demoMode) {
     return (
       <div className="flex items-center gap-2">
-        <Button variant="outline" className="rounded-md" onClick={handleDemoMode}>
-          View Demo
-        </Button>
+        {demoMode ? (
+          <Button variant="outline" className="rounded-md" onClick={handleExitDemoMode}>
+            Exit Demo
+          </Button>
+        ) : (
+          <Button variant="outline" className="rounded-md" onClick={handleDemoMode}>
+            View Demo
+          </Button>
+        )}
         <Button variant="outline" className="rounded-md">
           Connect Wallet
         </Button>

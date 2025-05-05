@@ -9,7 +9,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Button } from "@/components/ui/button"
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 import { Badge } from "@/components/ui/badge"
-import { InfoIcon, AlertTriangle, Clock, CloudRain, Wind, Thermometer } from "lucide-react"
+import { InfoIcon, AlertTriangle, Clock, CloudRain, Wind, Thermometer, XCircle } from "lucide-react"
 import { AirQualityChart } from "@/components/air-quality-chart"
 import { AirQualityMap } from "@/components/air-quality-map"
 import { BlockchainTransactions } from "@/components/blockchain-transactions"
@@ -63,6 +63,11 @@ export default function AirQualityDashboard() {
     setDemoMode(true)
   }
 
+  const handleExitDemoMode = () => {
+    localStorage.removeItem("openair-demo-mode")
+    setDemoMode(false)
+  }
+
   if (showWelcomeScreen) {
     return (
       <div className="flex flex-col items-center justify-center min-h-[60vh] gap-4">
@@ -97,13 +102,22 @@ export default function AirQualityDashboard() {
   return (
     <div className="space-y-6">
       {demoMode && (
-        <Alert className="bg-blue-50 text-blue-800 border-blue-200">
+        <Alert className="bg-blue-50 text-blue-800 border-blue-200 relative">
           <InfoIcon className="h-4 w-4" />
           <AlertTitle>Demo Mode Active</AlertTitle>
           <AlertDescription>
             You're viewing the application in demo mode. All features are accessible without requiring a wallet
             connection.
           </AlertDescription>
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={handleExitDemoMode}
+            className="absolute right-4 top-1/2 -translate-y-1/2 bg-white text-blue-800 border-blue-300 hover:bg-blue-50"
+          >
+            <XCircle className="mr-2 h-4 w-4" />
+            Exit Demo Mode
+          </Button>
         </Alert>
       )}
 
